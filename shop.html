@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Floral Yields | Petallique</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'rose-bg': '#FAF8F5',
+            'rose-text': '#241E1C',
+            'rose-primary': '#9C4153',
+            'rose-accent': '#4A5F4B',
+            'rose-muted': '#6D625D',
+            'rose-border': '#E6DFD5',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-rose-bg text-rose-text min-h-screen flex flex-col">
+
+  <!-- Sticky Elegant Header -->
+  <nav class="nav-sticky px-6 lg:px-16 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-12">
+      <a href="index.html" class="text-2xl font-serif tracking-widest uppercase hover:opacity-80">Petallique</a>
+      <div class="hidden md:flex items-center gap-8 text-xs tracking-widest uppercase font-medium">
+        <a href="index.html" class="hover:text-rose-primary transition-colors pb-1 border-b-2 border-transparent">Home</a>
+        <a href="shop.html" class="hover:text-rose-primary transition-colors border-b-2 border-rose-primary pb-1">Shop Flowers</a>
+        <a href="bouquet-builder.html" class="hover:text-rose-primary transition-colors pb-1 border-b-2 border-transparent">Bouquet Designer</a>
+        <a href="about.html" class="hover:text-rose-primary transition-colors pb-1 border-b-2 border-transparent">Our Story</a>
+      </div>
+    </div>
+    
+    <div class="flex items-center gap-6">
+      <button class="relative p-2 text-rose-text hover:text-rose-primary transition-colors js-cart-toggle" aria-label="View Cart">
+        <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+        <span id="cart-badge-count" class="absolute -top-1 -right-1 bg-rose-primary text-white text-[9px] w-4.5 h-4.5 rounded-full flex items-center justify-center font-bold hidden">0</span>
+      </button>
+      <button id="mobile-menu-trigger" class="md:hidden p-2" aria-label="Open menu">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation Panel -->
+  <div id="mobile-nav-panel" class="fixed inset-0 bg-rose-bg z-50 transform translate-x-full transition-transform duration-300 md:hidden flex flex-col p-8">
+    <div class="flex justify-between items-center mb-12">
+      <span class="text-xl font-serif tracking-widest uppercase">Petallique</span>
+      <button id="mobile-menu-close" class="p-2">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+    </div>
+    <div class="flex flex-col gap-6 text-lg font-serif tracking-wide">
+      <a href="index.html" class="hover:text-rose-primary">Home</a>
+      <a href="shop.html" class="text-rose-primary border-l-2 border-rose-primary pl-4">Shop Flowers</a>
+      <a href="bouquet-builder.html" class="pl-4 hover:text-rose-primary">Bouquet Designer</a>
+      <a href="about.html" class="pl-4 hover:text-rose-primary">Our Story</a>
+    </div>
+  </div>
+
+  <!-- Shop Banner -->
+  <header class="pt-32 pb-16 px-6 lg:px-16 border-b border-rose-border bg-white">
+    <div class="max-w-7xl mx-auto">
+      <p class="text-xs uppercase tracking-widest text-rose-accent font-semibold mb-2">Fresh Harvest</p>
+      <h1 class="text-4xl lg:text-5xl font-light mb-4">The Flower Gallery</h1>
+      <p class="text-rose-muted text-sm max-w-xl font-light">Sourced from certified biodynamic gardens. Freshly cut, arranged organically, and packaged in premium silk with nutrient hydration packs.</p>
+    </div>
+  </header>
+
+  <!-- Filtering and Storefront -->
+  <main class="flex-1 py-12 px-6 lg:px-16 max-w-7xl mx-auto w-full">
+    <div class="flex flex-col lg:flex-row gap-12">
+      
+      <!-- Left Filter Sidebar (Desktop) -->
+      <aside class="w-full lg:w-64 flex-shrink-0">
+        <div class="sticky top-28 space-y-8 bg-white p-6 border border-rose-border">
+          <div>
+            <h3 class="text-xs uppercase tracking-widest font-semibold text-rose-text mb-4 border-b border-rose-border pb-2">Categories</h3>
+            <div class="space-y-2 text-sm text-rose-muted">
+              <label class="flex items-center gap-3 cursor-pointer hover:text-rose-primary transition-colors">
+                <input type="radio" name="category-filter" value="all" checked class="accent-rose-primary">
+                <span>All Specimen</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer hover:text-rose-primary transition-colors">
+                <input type="radio" name="category-filter" value="signature" class="accent-rose-primary">
+                <span>Signature Bundles</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer hover:text-rose-primary transition-colors">
+                <input type="radio" name="category-filter" value="minimalist" class="accent-rose-primary">
+                <span>Minimalist Whispers</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer hover:text-rose-primary transition-colors">
+                <input type="radio" name="category-filter" value="dried" class="accent-rose-primary">
+                <span>Everlasting Dried</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xs uppercase tracking-widest font-semibold text-rose-text mb-4 border-b border-rose-border pb-2">Price Range</h3>
+            <div class="space-y-2 text-sm text-rose-muted">
+              <label class="flex items-center gap-3 cursor-pointer hover:text-rose-primary transition-colors">
+                <input type="radio" name="price-filter" value="all" checked class="accent-rose-primary">
+                <span>All Prices</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer hover:text-rose-primary transition-colors">
+                <input type="radio" name="price-filter" value="under-100" class="accent-rose-primary">
+                <span>Under $100</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer hover:text-rose-primary transition-colors">
+                <input type="radio" name="price-filter" value="100-150" class="accent-rose-primary">
+                <span>$100 - $150</span>
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer hover:text-rose-primary transition-colors">
+                <input type="radio" name="price-filter" value="over-150" class="accent-rose-primary">
+                <span>Over $150</span>
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xs uppercase tracking-widest font-semibold text-rose-text mb-4 border-b border-rose-border pb-2">Sort By</h3>
+            <select id="sort-select" class="w-full bg-rose-bg border border-rose-border px-3 py-2 text-xs focus:outline-none focus:border-rose-primary">
+              <option value="default">Our Curation</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+            </select>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Product Grid -->
+      <section class="flex-1">
+        <div class="flex justify-between items-center mb-6 text-xs tracking-wider text-rose-muted uppercase">
+          <span id="results-count">Showing 8 gorgeous arrangements</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="shop-products-grid">
+          <!-- Loaded dynamically via app.js -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-rose-text text-white/90 pt-16 pb-12 px-6 lg:px-16 mt-auto">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+      <div>
+        <h3 class="text-xl font-serif tracking-widest uppercase mb-6">Petallique</h3>
+        <p class="text-white/60 text-xs leading-relaxed max-w-xs font-light">
+          Premium floral atelier weaving poetic natural experiences for private spaces, milestones, and editorial visual productions.
+        </p>
+      </div>
+      <div>
+        <h4 class="text-xs tracking-widest uppercase text-rose-border mb-6 font-semibold">Shop Categories</h4>
+        <div class="flex flex-col gap-3 text-xs text-white/75">
+          <a href="shop.html?cat=signature" class="hover:text-white">Signature Arrangements</a>
+          <a href="shop.html?cat=minimalist" class="hover:text-white">Minimalist Whispers</a>
+          <a href="shop.html?cat=dried" class="hover:text-white">Everlasting Dried Crop</a>
+          <a href="bouquet-builder.html" class="hover:text-white">Custom Bouquet Atelier</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-xs tracking-widest uppercase text-rose-border mb-6 font-semibold">Client Care</h4>
+        <div class="flex flex-col gap-3 text-xs text-white/75">
+          <a href="about.html#consultation" class="hover:text-white">Floral Consultations</a>
+          <a href="about.html#care" class="hover:text-white">Specimen Care Guides</a>
+          <a href="#" class="hover:text-white">Courier Packaging & Delivery</a>
+          <a href="#" class="hover:text-white">Sustainability Charter</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-xs tracking-widest uppercase text-rose-border mb-6 font-semibold">Atelier Location</h4>
+        <p class="text-white/60 text-xs leading-relaxed mb-4 font-light">
+          742 Sage & Lavender Way<br>
+          Atelier Suite 100, Chelsea NY
+        </p>
+        <p class="text-white/60 text-xs font-light">
+          contact@petallique.com <br>
+          (212) 555-0182
+        </p>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-[11px] text-white/50 tracking-wider uppercase gap-4">
+      <p>&copy; 2025 Petallique Atelier. All rights reserved.</p>
+      <p>A soft, premium floral concept by Faizan</p>
+    </div>
+  </footer>
+
+  <!-- Elegant Shopping Cart Drawer -->
+  <div id="cart-overlay" class="cart-overlay js-cart-toggle"></div>
+  <div id="cart-drawer" class="cart-drawer">
+    <div class="p-6 border-b border-rose-border flex justify-between items-center bg-rose-bg">
+      <div class="flex items-center gap-2">
+        <i data-lucide="shopping-bag" class="w-5 h-5 text-rose-primary"></i>
+        <h2 class="text-xl font-serif tracking-wide">Your Selected Yield</h2>
+      </div>
+      <button class="p-2 hover:text-rose-primary transition-colors js-cart-toggle" aria-label="Close cart">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Cart List -->
+    <div id="cart-items-wrapper" class="flex-1 overflow-y-auto p-6 space-y-6">
+      <!-- Dynamic content from app.js -->
+    </div>
+
+    <!-- Cart Footer -->
+    <div class="p-6 border-t border-rose-border bg-rose-bg">
+      <div class="flex justify-between items-center mb-6">
+        <span class="text-xs tracking-widest uppercase font-semibold text-rose-muted">Estimated Subtotal</span>
+        <span id="cart-subtotal" class="text-xl font-serif font-semibold text-rose-primary">$0.00</span>
+      </div>
+      <p class="text-[10px] text-rose-muted mb-4 leading-relaxed italic">
+        * Private courier shipping, floral nutrients, and customized greeting note are included dynamically on all checkout submissions.
+      </p>
+      <button id="checkout-trigger-btn" class="w-full btn-primary justify-center">
+        Proceed to Secure Checkout <i data-lucide="credit-card" class="w-4 h-4"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Quick View / Product Detail Modal -->
+  <div id="quickview-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="absolute top-4 right-4 p-2 bg-white/80 rounded-full hover:text-rose-primary z-20 js-qv-close">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div class="grid grid-cols-1 md:grid-cols-2" id="quickview-modal-body">
+        <!-- Dynamic loaded in app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Elegant Checkout Confirmation Modal -->
+  <div id="checkout-modal" class="modal-overlay">
+    <div class="modal-content max-w-md p-8 text-center">
+      <div class="w-16 h-16 bg-rose-bg border border-rose-border rounded-full flex items-center justify-center mx-auto mb-6">
+        <i data-lucide="check-circle" class="w-8 h-8 text-rose-accent"></i>
+      </div>
+      <h2 class="text-3xl font-serif mb-3">Order Confirmed</h2>
+      <p class="text-rose-muted text-sm font-light mb-6">
+        Thank you, Faizan. Your floral order is registered. Our master florists are selection-testing your crop elements today. Expect dispatch details via SMS soon.
+      </p>
+      <button id="checkout-close-btn" class="btn-primary w-full justify-center">Return to Atelier</button>
+    </div>
+  </div>
+
+  <!-- Toast notifications container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Core Cart and Event Handler script -->
+  <script src="app.js"></script>
+</body>
+</html>
